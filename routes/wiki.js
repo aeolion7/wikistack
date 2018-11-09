@@ -13,18 +13,35 @@ router.get('/add', (req, res, next) => {
   res.status(200).send(addPage());
 });
 
+router.get('/:slug', async (req, res, next) => {
+  try {
+    const slug = await Page.findOne({
+      where: { slug: req.params.slug },
+    });
+    res.json(slug);
+  } catch (error) {
+    console.error(error.message);
+  }
+  // res.send(`hit dynamic route at ${req.params.slug}`);
+});
+
 router.post('/', async (req, res, next) => {
   // res.status(201).send('got to POST');
   const page = new Page({
+    name: req.body.name,
+    email: req.body.email,
     title: req.body.title,
-    content: req.body.content
+    content: req.body.content,
+    status: req.body.status,
   });
 
   try {
     await page.save();
-    //res.redirect('/');
-    res.send(page.slug);
-  } catch (error) { next(error) }
+    console.log(page);
+    res.redirect('/');
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;

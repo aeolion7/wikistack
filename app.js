@@ -10,6 +10,8 @@ const PORT = 3000;
 models.db.sync({ force: true });
 
 const app = express();
+
+app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
