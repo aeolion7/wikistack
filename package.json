@@ -1,0 +1,21 @@
+{
+  "name": "wikistack",
+  "version": "1.0.0",
+  "description": "wikistack",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "html-template-tag": "^2.0.0",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7"
+  }
+}
