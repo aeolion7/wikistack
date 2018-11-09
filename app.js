@@ -7,13 +7,13 @@ const wikiRouter = require('./routes/wiki');
 const userRouter = require('./routes/user');
 const PORT = 3000;
 
-models.db.sync({ force: true });
-
 const app = express();
+
+// models.db.sync({ force: true });
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/wiki', wikiRouter);
@@ -26,7 +26,7 @@ models.db.authenticate().then(() => {
 
 const init = async () => {
   try {
-    await models.db.sync();
+    await models.db.sync({ force: true });
     app.listen(PORT, () => {
       console.log(`App listening on port ${PORT}`);
     });

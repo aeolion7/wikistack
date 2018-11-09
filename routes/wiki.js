@@ -4,9 +4,15 @@ const router = express.Router();
 const { Page } = require('../models');
 const { addPage } = require('../views');
 const wikipage = require('../views/wikipage');
+const main = require('../views/main');
 
-router.get('/', (req, res, next) => {
-  res.redirect('/');
+router.get('/', async (req, res, next) => {
+  try {
+    const allPages = await Page.findAll();
+    res.send(main(allPages));
+  } catch (err) {
+    console.error(err.message);
+  }
   // res.status(200).send('got to GET');
 });
 
@@ -39,7 +45,7 @@ router.post('/', async (req, res, next) => {
   try {
     await page.save();
     console.log(page);
-    res.redirect('/');
+    res.redirect(`/wiki/${page.slug}`);
   } catch (error) {
     next(error);
   }
