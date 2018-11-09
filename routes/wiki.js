@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { Page } = require('../models');
 const { addPage } = require('../views');
+const wikipage = require('../views/wikipage');
 
 router.get('/', (req, res, next) => {
   res.redirect('/');
@@ -18,7 +19,7 @@ router.get('/:slug', async (req, res, next) => {
     const slug = await Page.findOne({
       where: { slug: req.params.slug },
     });
-    res.json(slug);
+    res.send(wikipage(slug));
   } catch (error) {
     console.error(error.message);
   }
