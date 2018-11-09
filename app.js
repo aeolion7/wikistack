@@ -26,7 +26,7 @@ models.db.authenticate().then(() => {
 
 const init = async () => {
   try {
-    await models.db.sync({ force: true });
+    await models.db.sync();
     app.listen(PORT, () => {
       console.log(`App listening on port ${PORT}`);
     });

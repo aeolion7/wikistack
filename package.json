@@ -15,6 +15,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "html-template-tag": "^2.0.0",
+    "marked": "^0.5.1",
     "morgan": "^1.9.1",
     "path": "^0.12.7",
     "pg": "^7.6.1",
