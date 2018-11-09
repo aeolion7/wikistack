@@ -12,7 +12,6 @@ const Page = db.define('page', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      isAlphanumeric: true,
     },
   },
   slug: {
@@ -52,6 +51,10 @@ const User = db.define('user', {
       isEmail: true,
     },
   },
+});
+
+Page.beforeValidate((page) => {
+   page.slug = page.title.replace(/\s+/g, '_').replace(/\W/g, '');
 });
 
 module.exports = { db, Page, User };
