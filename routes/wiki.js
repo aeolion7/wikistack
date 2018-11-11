@@ -1,5 +1,4 @@
 const express = require('express');
-// const addPage = require('../views/addPage');
 const router = express.Router();
 const { User, Page } = require('../models');
 const { addPage, wikiPage, editPage } = require('../views');
@@ -12,7 +11,6 @@ router.get('/', async (req, res, next) => {
   } catch (err) {
     console.error(err.message);
   }
-  // res.status(200).send('got to GET');
 });
 
 router.get('/add', (req, res, next) => {
@@ -29,7 +27,6 @@ router.get('/:slug', async (req, res, next) => {
   } catch (error) {
     console.error(error.message);
   }
-  // res.send(`hit dynamic route at ${req.params.slug}`);
 });
 
 router.get('/:slug/edit', async (req, res, next) =>{
@@ -45,7 +42,6 @@ router.get('/:slug/edit', async (req, res, next) =>{
 });
 
 router.post('/', async (req, res, next) => {
-  // res.status(201).send('got to POST');
   try {
     const [user, wasCreated] = await User.findOrCreate({
      where: {
